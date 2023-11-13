@@ -2,12 +2,12 @@ export type UserProps = {
   name: string;
   email: string;
   password: string;
-  created_at?: Date;
+  createdAt?: Date;
 };
 
 export class UserEntity {
   constructor(public readonly props: UserProps) {
-    this.props.created_at = this.props.created_at ?? new Date();
+    this.props.createdAt = this.props.createdAt ?? new Date();
   }
 
   get name() {
@@ -20,7 +20,7 @@ export class UserEntity {
     return this.props.password;
   }
 
-  get created_at() {
-    return this.props.created_at;
+  get createdAt() {
+    return this.props.createdAt;
   }
 }
