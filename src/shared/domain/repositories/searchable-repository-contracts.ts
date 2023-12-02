@@ -18,7 +18,7 @@ export class SearchParams {
   protected _sortDir: string | null;
   protected _filter: string | null;
 
-  constructor(props: SearchProps) {
+  constructor(props: SearchProps = {}) {
     this.page = props.page;
     this.perPage = props.perPage;
     this.sort = props.sort;
@@ -43,7 +43,7 @@ export class SearchParams {
   }
 
   private set perPage(value: number) {
-    let perPage = +value;
+    let perPage = value === (true as any) ? this._perPage : +value;
     if (
       Number.isNaN(perPage) ||
       perPage <= 0 ||
@@ -51,7 +51,7 @@ export class SearchParams {
     ) {
       perPage = this._perPage;
     }
-    this.perPage = perPage;
+    this._perPage = perPage;
   }
 
   get sort() {
@@ -81,7 +81,7 @@ export class SearchParams {
   }
 
   private set filter(value: string | null) {
-    this.filter =
+    this._filter =
       value === null || value === undefined || value === '' ? null : `${value}`;
   }
 }
